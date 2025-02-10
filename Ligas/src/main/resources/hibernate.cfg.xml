@@ -1,25 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+<hibernate-configuration>
     <session-factory>
-        <!-- Configuración de la sesión de Hibernate -->
         <property name="hibernate.current_session_context_class">thread</property>
-
-        <!-- Dialecto de la base de datos (MySQL) -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
-
-        <!-- URL de conexión a la base de datos -->
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ligas</property>
-
-        <!-- Usuario de la base de datos -->
         <property name="hibernate.connection.username">root</property>
-
-        <!-- Contraseña de la base de datos (vacía en este caso) -->
         <property name="hibernate.connection.password"></property>
-
-        <!-- Driver de conexión a MySQL -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 
-        <!-- Mapeo de las clases de entidad -->
         <mapping class="model.Liga"/>
         <mapping class="model.Equipo"/>
         <mapping class="model.Jugador"/>
