@@ -11,7 +11,7 @@ import lombok.*;
 @Table(name = "entrenadores")
 @NamedQueries(
         {
-                @NamedQuery(name="Entrenador.findAll", query= "SELECT e FROM Entrenador e WHERE e.equipo.liga.id= :idLiga")
+                @NamedQuery(name="Entrenador.findAll", query= "SELECT e FROM Entrenador e LEFT JOIN FETCH e.equipo eq WHERE eq.liga.id= :idLiga")
 
 
         }
@@ -32,6 +32,7 @@ public class Entrenador {
 
     @OneToOne
     @JoinColumn(name = "id_equipo")
+    @ToString.Exclude
     private Equipo equipo;
 
     @Override

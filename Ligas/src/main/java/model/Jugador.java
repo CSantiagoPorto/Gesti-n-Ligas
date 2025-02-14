@@ -1,10 +1,8 @@
 package model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import model.Equipo;
 
 import java.io.Serializable;
 @Entity
@@ -38,6 +36,8 @@ public class Jugador implements Serializable {
 
     @ManyToOne
     @JoinColumn(name="id_equipo")//Esto marca la FK
+    @ToString.Exclude //Esto evita la recursividad infinita
+
     private Equipo equipo;// Esto nos permite acceder a un objeto equipo
 
     @Override
@@ -49,7 +49,7 @@ public class Jugador implements Serializable {
                 ", valorMercado=" + valorMercado +
                 ", goles=" + goles +
                 ", nacionalidad='" + nacionalidad + '\'' +
-                ", equipo=" + equipo +
+               ", equipo=" + (equipo != null ? equipo.getNombreEquipo() : "Sin equipo") +
                 '}';
     }
 }

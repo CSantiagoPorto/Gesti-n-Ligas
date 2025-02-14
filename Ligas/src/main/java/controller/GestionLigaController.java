@@ -8,6 +8,8 @@ import model.Entrenador;
 import model.Equipo;
 import model.Jugador;
 import model.Liga;
+import org.hibernate.Transaction;
+import utils.HibernateUtils;
 
 import java.util.List;
 
@@ -56,6 +58,7 @@ public class GestionLigaController {
         }
     }
 
+
     public void mostrarJugadoresEquipo(int idEquipo) {
         List<Jugador> jugadores = jugadorDAO.obtenerJugadoresPorEquipo(idEquipo);
         if (jugadores.isEmpty()) {
@@ -66,6 +69,9 @@ public class GestionLigaController {
                 System.out.println("- " + jugador.getNombre() + " | Posición: " + jugador.getPosicion() + " | Goles: " + jugador.getGoles());
             }
         }
+    }
+    public void insertarEquipo(Equipo equipo){
+        equipoDAO.insertarEquipo(equipo);
     }
 
     public void transferirJugador(int idJugador, int idEquipoN) {
@@ -84,12 +90,16 @@ public class GestionLigaController {
         }
 
     }
+
+    public void insertarJugador(Jugador jugador){
+        jugadorDAO.insertarJugador(jugador);
+    }
     public void mostrarEntrenadoresPorLiga(int idLiga) {
         List<Entrenador> entrenadores = entrenadorDAO.entrenadoresXLiga(idLiga);
         if (!entrenadores.isEmpty()) {
             System.out.println("Entrenadores en la liga " + idLiga + ":");
             for (Entrenador entrenador : entrenadores) {
-                System.out.println(entrenador); // ✅ Usa el `toString()` automáticamente
+                System.out.println(entrenador);
             }
         } else {
             System.out.println("No hay entrenadores en esta liga.");

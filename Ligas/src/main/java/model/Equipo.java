@@ -1,5 +1,6 @@
 package model;
 
+import dao.EquipoDAO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,11 +34,12 @@ public class Equipo {
     @JoinColumn(name = "id_liga")
     private Liga liga;
 
-    @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //CascadeType.ALL -> Si elimino el equipo elimino los jugadores
+    @ToString.Exclude
     private List<Jugador> jugadores;
-
     @OneToOne(mappedBy = "equipo", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private Entrenador entrenador;
 
     @Override
@@ -47,8 +49,13 @@ public class Equipo {
                 ", nombreEquipo='" + nombreEquipo + '\'' +
                 ", ciudad='" + ciudad + '\'' +
                 ", liga=" + liga +
-                ", jugadores=" + jugadores +
-                ", entrenador=" + entrenador +
+                ", jugadores=" + (jugadores != null ? jugadores.stream()
+                .map(Jugador::getNombre)
+                .toList() : "Sin jugadores") +
+                ", S entrenador=" + (entrenador != null ? entrenador.getNombre() : "Sin equipo") +
                 '}';
     }
+
+
+
 }

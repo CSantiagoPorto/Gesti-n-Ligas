@@ -11,16 +11,26 @@ import java.util.List;
 
 public class EquipoDAO {
     private Session session;
-    public List<Equipo> obternerEquiposLiga(int idLiga){
-        session= HibernateUtils.getSessionFactory().getCurrentSession();
-        Transaction transaction=session.beginTransaction();
 
-        Query<Equipo> query= session.createNamedQuery("Equipo.findByLiga", Equipo.class);
+    public List<Equipo> obternerEquiposLiga(int idLiga) {
+        session = HibernateUtils.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<Equipo> query = session.createNamedQuery("Equipo.findByLiga", Equipo.class);
         query.setParameter("idLiga", idLiga);
-        List<Equipo> equipos= query.list();
+        List<Equipo> equipos = query.list();
 
         session.getTransaction().commit();
         session.close();
         return equipos;
+    }
+    public void insertarEquipo(Equipo equipo){
+        session = HibernateUtils.getSessionFactory().getCurrentSession();;
+        Transaction transaction= session.beginTransaction();
+
+        session.persist(equipo);
+        transaction.commit();
+        session.close();
+        System.out.println("Equipo insertado: "+ equipo.getNombreEquipo());
     }
 }
