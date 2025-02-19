@@ -93,9 +93,6 @@ public class LigaDAO {
 
 
 
-    //FALTA:
-    //Asignar equipo a Liga
-    //Para eso necesito saber qué equipos son de cada liga
-    //Actualizar desde el Controller
+
 
 }

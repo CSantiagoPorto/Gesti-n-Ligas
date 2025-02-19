@@ -9,9 +9,9 @@ import model.Liga;
 public class Entrada {
     public static void main(String[] args) {
         GestionLigaController gestionLiga = new GestionLigaController();
-
+/*
 //Creo la liga
-        Liga laLiga = new Liga();
+       Liga laLiga = new Liga();
         laLiga.setNombreLiga("LaLiga Española");
         laLiga.setFechaInicio("2024-08-15");
         laLiga.setFechaFin("2025-05-25");
@@ -52,12 +52,7 @@ public class Entrada {
         gestionLiga.insertarJugador(griezmann);
         gestionLiga.insertarJugador(koke);
 
-        // Ficho 2 jugadores de otro equipo
-        System.out.println(" Transferencia: Lewandowski pasa del Barcelona al Real Madrid.");
-        gestionLiga.transferirJugador(lewandowski.getId(), realMadrid.getId());
 
-        System.out.println(" Transferencia: Koke pasa del Atlético de Madrid al Barcelona.");
-        gestionLiga.transferirJugador(koke.getId(), barcelona.getId());
 
         // Creotres entrenadores  y los asigno
         Entrenador ancelotti = new Entrenador(0, "Carlo Ancelotti", 9.5, 4, realMadrid);
@@ -78,6 +73,17 @@ public class Entrada {
 
         //  Muestro los entrenadores
         System.out.println("Entrenadores de los equipos de LaLiga:");
-        gestionLiga.mostrarEntrenadoresPorLiga(laLiga.getId());
+        gestionLiga.mostrarEntrenadoresPorLiga(laLiga.getId());*/
+
+
+ //Ficho 2 jugadores de otro equipo
+  /*  System.out.println("Transferencia: Lewandowski pasa del Barcelona al Real Madrid.");
+     gestionLiga.transferirJugador(3, 1);
+
+     System.out.println("Transferencia: Koke pasa del Atlético de Madrid al Barcelona.");
+     gestionLiga.transferirJugador(6, 2);*/
+
+     /*gestionLiga.eliminarEquipo(1);*/
+      gestionLiga.eliminarLiga(1);
     }
 }

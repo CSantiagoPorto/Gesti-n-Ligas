@@ -15,7 +15,7 @@ public class JugadorDAO {
 
 private Session session;
 
-//CREATE
+
     public void insertarJugador(Jugador jugador){
         session = HibernateUtils.getSessionFactory().getCurrentSession();
         Transaction transaction =session.beginTransaction();
@@ -94,6 +94,16 @@ private Session session;
      transaction.commit();
      session.close();
  }
+    public void actualizarJugador(Jugador jugador) {
+        session = HibernateUtils.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.merge(jugador);
+
+        transaction.commit();
+        session.close();
+    }
+
 
 
 }//FIN DE LA CLASE JugadorDAO

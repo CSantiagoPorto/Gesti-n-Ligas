@@ -4,6 +4,7 @@ import dao.EntrenadorDAO;
 import dao.EquipoDAO;
 import dao.JugadorDAO;
 import dao.LigaDAO;
+import jdk.swing.interop.SwingInterOpUtils;
 import model.Entrenador;
 import model.Equipo;
 import model.Jugador;
@@ -42,9 +43,7 @@ public class GestionLigaController {
         }
 
     }
-    public void eliminarLiga(int ligaId) {
-        ligaDAO.eliminarLiga(ligaId);
-    }
+
 
     public void mostrarEquiposLiga(int idLiga) {
         List<Equipo> equipos = equipoDAO.obternerEquiposLiga(idLiga);
@@ -104,6 +103,22 @@ public class GestionLigaController {
         } else {
             System.out.println("No hay entrenadores en esta liga.");
         }
+    }
+    public void eliminarEquipo(int idEquipo) {
+        EquipoDAO equipoDAO = new EquipoDAO();
+        equipoDAO.eliminarEquipo(idEquipo);
+    }
+
+    public void eliminarLiga(int idLiga){
+        //Liga está relacionada con equipos. Entonces vamos a Eliminar primero los equipos
+        //y luego la liga
+        List<Equipo> equipos= equipoDAO.obternerEquiposLiga(idLiga);
+        for(Equipo equipo:equipos){
+            equipoDAO.eliminarEquipo(equipo.getId());//Elimino el equipo por Id
+
+        }
+        ligaDAO.eliminarLiga(idLiga);
+        System.out.println("La Liga "+ Liga.class.getName()+ "ha sido eliminada");
     }
 
 

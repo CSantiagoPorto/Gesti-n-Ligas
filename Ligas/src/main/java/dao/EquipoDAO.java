@@ -11,6 +11,14 @@ import java.util.List;
 
 public class EquipoDAO {
     private Session session;
+    public Equipo obtenerEquipoPorId(int idEquipo){
+        session = HibernateUtils.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        Equipo equipo= session.get(Equipo.class, idEquipo);
+        transaction.commit();
+        session.close();
+        return equipo;
+    }
 
     public List<Equipo> obternerEquiposLiga(int idLiga) {
         session = HibernateUtils.getSessionFactory().getCurrentSession();
@@ -33,4 +41,21 @@ public class EquipoDAO {
         session.close();
         System.out.println("Equipo insertado: "+ equipo.getNombreEquipo());
     }
+    public void eliminarEquipo(int idEquipo) {
+        session = HibernateUtils.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+
+        Equipo equipo = session.get(Equipo.class, idEquipo);
+        if (equipo != null) {
+            session.remove(equipo);
+            
+            System.out.println("Equipo eliminado correctamente.");
+        } else {
+            System.out.println("No se encontró el equipo.");
+        }
+
+        transaction.commit();
+        session.close();
+    }
+
 }
